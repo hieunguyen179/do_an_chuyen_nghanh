@@ -1,0 +1,53 @@
+from decouple import config
+
+API_KEY = config('API_KEY')
+PROVINCES_LIST = [
+    'hanoi',
+    '@-541225',
+    'thai-nguyen',
+    'bac-ninh',
+    '@14641',
+    '@13672',
+    '@5499',
+    '@13028',
+    '@13662',
+    '@13687',
+    '@13659',
+    '@13417',
+    # '@476308',
+    '@-476626',
+    '@-476317',
+    '@13658',
+    '@-476188',
+    'hung-yen',
+    '@-476170',
+    # '@476293',
+    'viet-tri',
+    '@-476272',
+]  # Mở rộng sau (slug API)
+PROVINCE_MAPPING = {
+    'hanoi': 'Hà Nội',
+    '@-541225': 'Hồ Chí Minh',
+    'thai-nguyen': 'Thái Nguyên',
+    'bac-ninh': 'Bắc Ninh',
+    '@14641': 'Thái Bình',
+    '@13672': 'Ninh Bình',
+    '@5499': 'Quảng Ninh',
+    '@13028': 'Quảng Bình',
+    '@13662' : 'Trà Vinh',
+    '@13687' : 'Cần Thơ',
+    '@13659' : 'Tây Ninh',
+    '@13417' : 'Gia Lai',
+    # '@476308' : 'Quảng Nam',
+    '@-476626' : 'Bình Định',
+    '@-476317' : 'Quảng Ngãi',
+    '@13658' : 'Đà Nẵng',
+    '@-476188' : 'Hà Nam',
+    'hung-yen' : 'Hưng Yên',
+    '@-476170' : 'Hải Dương',
+    # '@476293' :'Bắc Giang',
+    'viet-tri' : 'Phú Thọ',
+    '@-476272' : 'Long An',
+}
+DATA_PATH = 'data/processed/vn_pollution.geojson'
+DB_PATH = 'data/processed/aqi_history.db'

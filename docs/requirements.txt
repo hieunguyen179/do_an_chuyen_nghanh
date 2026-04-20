@@ -1,0 +1,7 @@
+geopandas==0.14.3
+pandas==2.2.0
+folium==0.14.0
+requests==2.31.0
+apscheduler==3.10.4
+streamlit==1.26.1
+streamlit-folium==0.10.1

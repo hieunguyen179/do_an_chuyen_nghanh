@@ -1,0 +1,18 @@
+# Python tạm
+*.pyc
+__pycache__/
+# Dữ liệu lớn
+data/raw/*.shp
+data/raw/*.shx
+data/raw/*.dbf
+data/processed/*.geojson
+data/processed/*.db
+data/cache/*
+# Log
+logs/*
+# IDE
+.idea/
+.vscode/
+# Env
+*.env
+.env
