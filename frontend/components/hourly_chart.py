@@ -15,12 +15,12 @@ def create_hourly_chart(province_name):
     
     fig = go.Figure()
     
-    # Đường cong chính
+    # Đường cong chính - ĐỔI MÀU LINE THÀNH XANH LÁ
     fig.add_trace(go.Scatter(
         x=times,
         y=aqi_values,
         mode='lines+markers',
-        line=dict(color='#6366f1', width=5, shape='spline', smoothing=1.3),
+        line=dict(color='#198754', width=5, shape='spline', smoothing=1.3), # Màu xanh lá
         marker=dict(
             size=16,
             color=colors,
@@ -46,14 +46,14 @@ def create_hourly_chart(province_name):
             'text': f"Dự báo 24 giờ của tỉnh: <b>{province_name}</b>",
             'x': 0.5,
             'xanchor': 'center',
-            'font': dict(size=24, color="white")
+            'font': dict(size=24, color="#333333") # ĐỔI CHỮ THÀNH MÀU ĐEN XÁM
         },
         plot_bgcolor="rgba(0,0,0,0)",
-        paper_bgcolor="#ccc",
+        paper_bgcolor="#ffffff", # ĐỔI NỀN THÀNH MÀU TRẮNG
         height=350,
         margin=dict(l=40, r=40, t=60, b=80),
         xaxis=dict(
-            tickfont=dict(size=14, color="white"),
+            tickfont=dict(size=14, color="#333333"), # ĐỔI CHỮ TRỤC X THÀNH MÀU ĐEN XÁM
             gridcolor="rgba(0,0,0,0)",  # ✅ BỎ LINE NGANG
             zeroline=False
         ),

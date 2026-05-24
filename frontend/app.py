@@ -24,7 +24,7 @@ from frontend.components.health_card import create_health_advice_card , create_m
 st.set_page_config(page_title="AirWatch VN", layout="wide")
 
 # =================================================================
-# 2. CSS (ĐÃ SỬA LẠI)
+# 2. CSS (ĐÃ ĐỔI TÔNG TRẮNG & XANH LÁ)
 # =================================================================
 st.markdown("""
 <style>
@@ -41,50 +41,48 @@ iframe {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
 }
 
-/* CSS CHO TIÊU ĐỀ SIDEBAR (MỚI) */
+/* CSS CHO TIÊU ĐỀ SIDEBAR (Xanh lá chủ đạo) */
 .sidebar-title-box {
-    background-color: #1a1a1a;
-    border: 1px solid #404040;
+    background-color: #198754; /* Xanh lá đậm */
+    border: 1px solid #146c43;
     border-radius: 8px;
-    padding: 10px 16px; /* Căn lề cho chữ */
-    margin-bottom: 16px; /* Khoảng cách với list bên dưới */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    /* Set chiều cao cố định để ngang bằng nút "Cập nhật" */
+    padding: 10px 16px; 
+    margin-bottom: 16px; 
+    box-shadow: 0 4px 12px rgba(25,135,84,0.2);
     height: 40px; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .sidebar-title-box h3 {
-    color: white;
-    margin: 0; /* Xóa margin mặc định của h3 */
-    font-size: 1.25rem; /* Cỡ chữ */
+    color: #ffffff; /* Chữ trắng */
+    margin: 0; 
+    font-size: 1.25rem; 
 }
 
-/* CSS CHO DANH SÁCH CUỘN (SCROLLBAR) */
+/* CSS CHO DANH SÁCH CUỘN (Nền trắng) */
 .right-sidebar-list {
-    /* Chiều cao 800px (chiều cao bản đồ) TRỪ đi chiều cao title (55px + 6px margin) */
     margin-top :10px;
     height: 800px !important; 
     max-height: 800px !important;
     overflow-y: auto !important; 
     overflow-x: hidden !important;
-    background-color: #1a1a1a !important;
+    background-color: #ffffff !important; /* Trắng */
     border-radius: 12px !important;
     padding: 16px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    border: 1px solid #e9ecef;
 }
 
 /* Style cho các link <a> (thay cho st.button) */
 .province-item {
-    /* ... (CSS cho .province-item, .province-item:hover, .aqi-highlight giữ nguyên) ... */
     width: 100%;
     padding: 12px;
     margin: 6px 0;
-    background: #2a2a2a;
-    border: 1px solid #404040;
+    background: #f8f9fa; /* Xám rất nhạt */
+    border: 1px solid #dee2e6; /* Xám viền */
     border-radius: 8px;
-    color: white;
+    color: #333333; /* Chữ đen xám */
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
@@ -97,15 +95,16 @@ iframe {
 }
 
 .province-item:hover {
-    background: #3a3a3a;
-    border-color: #505050;
+    background: #e8f5e9; /* Xanh lá cực nhạt khi hover */
+    border-color: #198754; /* Viền xanh lá */
     transform: translateX(4px);
-    color: white; 
+    color: #0f5132; /* Chữ xanh lá thẫm */
 }
 .aqi-highlight {
     font-weight: bold;
     font-size: 16px;
     float: right; 
+    text-shadow: 0px 0px 1px rgba(0,0,0,0.2); /* Thêm bóng nhẹ để số vàng/xanh dễ đọc trên nền trắng */
 }
 
 .bg-img {
@@ -114,7 +113,7 @@ iframe {
     height: 400px;
     background-origin : border-box;
     border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
     color: white;
     border : 2px solid white;
     padding: 40px 50px;
@@ -132,44 +131,45 @@ div[data-testid="stTextInput"] {
 }
 
 div[data-testid="stTextInput"] > div > div > input {
-    background-color: #2a2a2a !important;
-    border: 2px solid #404040 !important;
+    background-color: #ffffff !important; /* Trắng */
+    border: 2px solid #ced4da !important; /* Xám nhạt */
     border-radius: 8px !important;
-    color: white !important;
+    color: #333333 !important; /* Chữ đen xám */
     padding: 12px 16px !important;
     font-size: 15px !important;
     transition: all 0.3s ease !important;
 }
 
 div[data-testid="stTextInput"] > div > div > input:focus {
-    border-color: #569156 !important;
-    box-shadow: 0 0 0 3px rgba(86, 145, 86, 0.2) !important;
+    border-color: #198754 !important; /* Xanh lá focus */
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.2) !important;
     outline: none !important;
 }
 
 div[data-testid="stTextInput"] > div > div > input::placeholder {
-    color: #999 !important;
+    color: #adb5bd !important; /* Xám chữ mờ */
     font-style: italic !important;
 }
 
 /* Điều chỉnh chiều cao list khi có search box */
 .right-sidebar-list {
     margin-top: 10px;
-    height: calc(800px - 100px) !important; /* Trừ đi chiều cao search box */
+    height: calc(800px - 100px) !important; 
     max-height: calc(800px - 100px) !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    background-color: #1a1a1a !important;
+    background-color: #ffffff !important;
     border-radius: 12px !important;
     padding: 16px !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    border: 1px solid #e9ecef;
 }
             
 /* Animation cho nút định vị */
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(25, 135, 84, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
 }
 
 .locate-button-container button:active {
@@ -245,7 +245,7 @@ if st.session_state.selected_province:
                     padding: 20px 24px;
                     margin-bottom: 20px;
                     box-shadow: 0 8px 24px {alert_color}66;
-                    animation: pulse 2s infinite;
+                    animation: pulse_alert 2s infinite;
                 ">
                     <div style="display:flex; align-items:center; gap:16px;">
                         <span style="font-size:48px;">{alert_icon}</span>
@@ -272,7 +272,7 @@ if st.session_state.selected_province:
                 </div>
                 
                 <style>
-                @keyframes pulse {{
+                @keyframes pulse_alert {{
                     0%, 100% {{
                         box-shadow: 0 8px 24px {alert_color}66;
                     }}
@@ -288,7 +288,7 @@ if st.session_state.selected_province:
 col1, col2 = st.columns([3, 1])
 
 with col1:
-    # NÚT CẬP NHẬT (SẼ NGANG HÀNG VỚI TITLE SIDEBAR)
+    # NÚT CẬP NHẬT
     if st.button("Cập nhật dữ liệu AQI", type="primary", use_container_width=True):
         with st.spinner("Đang lấy dữ liệu mới..."):
             try:
@@ -328,19 +328,17 @@ with col2:
         label="Tìm kiếm tỉnh",
         placeholder="Nhập tên tỉnh...",
         key="province_search",
-        label_visibility="collapsed"  # Ẩn label mặc định
+        label_visibility="collapsed"
     )
 
     # ===== 3. LỌC DỮ LIỆU THEO TÌM KIẾM =====
     provinces = gdf.sort_values('AQI', ascending=False).dropna(subset=['AQI'])
     
-    # Nếu có từ khóa tìm kiếm, lọc danh sách
     if search_query:
         provinces = provinces[
             provinces['NAME_1'].str.contains(search_query, case=False, na=False)
         ]
 
-    # Tự động chọn tỉnh đầu tiên nếu chỉ có 1 kết quả
     if search_query and len(provinces) == 1:
         auto_select = provinces.iloc[0]['NAME_1']
         if st.session_state.selected_province != auto_select:
@@ -366,7 +364,7 @@ with col2:
             if aqi <= 50:
                 color = "#00e400"
             elif aqi <= 100:
-                color = "#ffff00"
+                color = "#cccc16" # Vàng sẫm hơn một chút cho dễ nhìn trên nền trắng
             elif aqi <= 150:
                 color = "#ff7e00"
             elif aqi <= 200:
@@ -383,7 +381,7 @@ with col2:
             </a>
             """)
     
-    html_list_content += f'<hr><a href="?province=None" target="_self" class="province-item" style="text-align: center;">🗑️ Ẩn đánh dấu</a>'
+    html_list_content += f'<hr><a href="?province=None" target="_self" class="province-item" style="text-align: center; color:#dc3545;">🗑️ Ẩn đánh dấu</a>'
     html_list_content += '</div>'
     
     st.markdown(html_list_content, unsafe_allow_html=True)
@@ -391,22 +389,19 @@ with col2:
 # =========================================================
 
 # =================================================================
-# THANH THÔNG TIN – DÙNG ẢNH LOCAL (giữ nguyên mọi thứ bạn đang có)
+# THANH THÔNG TIN – DÙNG ẢNH LOCAL
 # =================================================================
 import base64
 from pathlib import Path
 
-# Hàm nhúng ảnh local thành base64 (không cần server)
 def img_to_base64(img_path):
     if img_path.exists():
         with open(img_path, "rb") as f:
             return base64.b64encode(f.read()).decode()
     return None
 
-# Thư mục ảnh tỉnh
 IMG_DIR = Path(__file__).parent / "static" / "province"
 
-# Mapping tên tỉnh → tên file ảnh (không dấu, chữ thường)
 PROVINCE_IMAGES = {
     "An Giang" : "angiang.png",
     "Bắc Giang": "bacgiang.png",
@@ -474,10 +469,8 @@ PROVINCE_IMAGES = {
     "Thừa Thiên Huế": "hue.png",
     "Hải Phòng": "haiphong.png",
     "Cần Thơ": "cantho.png",
-    # Thêm dần khi có ảnh mới
 }
 
-# Biến để lưu AQI hiện tại (dùng chung cho snack bar và forecast)
 current_aqi_value = None
 
 if st.session_state.selected_province:
@@ -492,7 +485,6 @@ if st.session_state.selected_province:
         aqi_raw = row['AQI']
         update_date = row.get('Date', 'Không rõ')
 
-        # Xử lý AQI (giữ nguyên logic cũ của bạn)
         if pd.isna(aqi_raw):
             aqi_display = "N/A"
             status = "Chưa có dữ liệu"
@@ -500,7 +492,7 @@ if st.session_state.selected_province:
             current_aqi_value = None
         else:
             aqi = int(aqi_raw)
-            current_aqi_value = aqi  # Lưu giá trị AQI để dùng cho forecast
+            current_aqi_value = aqi  
             aqi_display = str(aqi)
             if aqi <= 50:
                 status, status_color = "Tốt", "#00e400"
@@ -513,45 +505,43 @@ if st.session_state.selected_province:
             else:
                 status, status_color = "Rất xấu", "#99004c"
 
-        # LẤY ẢNH LOCAL
         filename = PROVINCE_IMAGES.get(province)
         img_path = IMG_DIR / filename if filename else None
         encoded = img_to_base64(img_path) if img_path else None
-        bg_image = f"data:image/png;base64,{encoded}" if encoded else "https://i.imgur.com/2f8p8vP.jpg"  # fallback tạm
+        bg_image = f"data:image/png;base64,{encoded}" if encoded else "https://i.imgur.com/2f8p8vP.jpg"  
 
-        # GIỮ NGUYÊN 100% STYLE CỦA BẠN – CHỈ ĐỔI URL ẢNH
         st.markdown(f"""
         <div class="bg-img" 
-                 style="background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.85)), 
+                 style="background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85)), 
                                     url('{bg_image}') center /cover no-repeat;">
-            <div style="position: absolute; top: 20px; right: 30px; opacity: 0.8; font-size: 14px;">
+            <div style="position: absolute; top: 20px; right: 30px; opacity: 0.9; font-size: 14px; color: white;">
                 Cập nhật: {update_date}
             </div>
-            <h1 style="margin:0; font-size: 58px; font-weight: bold; text-shadow: 0 6px 20px rgba(0,0,0,0.8);">
+            <h1 style="margin:0; font-size: 58px; font-weight: bold; text-shadow: 0 4px 15px rgba(0,0,0,0.8); color: white;">
                 {province}
             </h1>
             <h2 style="margin: -10px 0px 20px; font-size: 40px; font-weight: bold; color: {status_color}; 
-                text-shadow: 0 6px 20px rgba(0,0,0,0.9);">
+                text-shadow: 0 4px 15px rgba(0,0,0,0.9);">
                 {aqi_display} AQI - Tình Trạng : {status}
             </h2>
-            <div style="font-size: 15px; font-weight: bold;">
-                <span style="background: rgb(235 193 193 / 70%); 
-                        padding: 12px 12px; border-radius: 80px; 
-                        backdrop-filter: blur(15px); 
-                        box-shadow: 0 10px 40px rgba(0,0,0,0.6);">
-                    Cuộn xuống để biết thêm chi tiết ▼
+            <div style="font-size: 15px; font-weight: bold; color: #333;">
+                <span style="background: rgba(255, 255, 255, 0.85); 
+                        padding: 12px 16px; border-radius: 80px; 
+                        backdrop-filter: blur(10px); 
+                        box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
+                    🌿 Cuộn xuống để biết thêm chi tiết ▼
                 </span>
             </div>
         </div>
         """, unsafe_allow_html=True)
 else:
-    # Giữ nguyên phần chưa chọn tỉnh của bạn
+    # GRADIENT XANH LÁ CHO BANNER CHƯA CHỌN TỈNH
     st.markdown("""
     <div style="
         margin-top: 24px;
         width: 100%;
         height: 400px;
-        background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+        background: linear-gradient(135deg, #0f5132 0%, #198754 50%, #28a745 100%);
         border-radius: 16px;
         display: flex;
         align-items: center;
@@ -560,7 +550,7 @@ else:
         font-size: 32px;
         font-weight: bold;
         text-align: center;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 30px rgba(25, 135, 84, 0.3);
     ">
         Chọn một tỉnh từ bản đồ hoặc danh sách bên phải để xem chi tiết
     </div>
@@ -578,17 +568,16 @@ if st.session_state.selected_province and current_aqi_value:
         st.html(mask_card_html)
 
 if st.session_state.selected_province:
-    # Truyền AQI hiện tại vào forecast bar để đồng bộ với snack bar
     forecast_html = create_forecast_bar(st.session_state.selected_province, current_aqi=current_aqi_value)
     components.html(forecast_html, height=450, scrolling=False)
 else:
-    # Giữ nguyên phần chưa chọn tỉnh của bạn
+    # GRADIENT XANH LÁ CHO BANNER DỰ BÁO
     st.markdown("""
     <div style="
         margin-top: 24px;
         width: 100%;
         height: 450px;
-        background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+        background: linear-gradient(135deg, #0f5132 0%, #198754 50%, #28a745 100%);
         border-radius: 16px;
         display: flex;
         align-items: center;
@@ -597,7 +586,7 @@ else:
         font-size: 32px;
         font-weight: bold;
         text-align: center;
-        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 30px rgba(25, 135, 84, 0.3);
     ">
         Dự báo 5 ngày tiếp theo ! 
     </div>
@@ -616,10 +605,11 @@ if st.session_state.selected_province:
     if chart:
         st.plotly_chart(chart, use_container_width=True, config={'displayModeBar': False})
 else:
+    # GRADIENT XANH LÁ CHO BANNER BIỂU ĐỒ 24H
     st.markdown("""
     <div style="margin-top:10px; margin-bottom : 10px ; 
             width:100% ; height:350px; 
-            background: linear-gradient(135deg, #000428 0%, #004e92 100%); 
+            background: linear-gradient(135deg, #0f5132 0%, #198754 50%, #28a745 100%); 
             border-radius: 16px; display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -627,27 +617,25 @@ else:
             font-size: 32px; 
             font-weight: bold; 
             text-align: center; 
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);">          
+            box-shadow: 0 8px 30px rgba(25, 135, 84, 0.3);">          
         Dự báo 24 giờ
     </div>
     """, unsafe_allow_html=True)
 
-# =============== Trung binh toan quoc + tinh tot nhat + tinh te nhat ==================
+# =============== 3 THẺ THỐNG KÊ (TRẮNG + CHỮ ĐEN XÁM) ==================
 st.markdown(f"""
 <div style="display:flex; gap:20px; margin-bottom:20px;margin-top:20px;">
-    <div style="flex:1; background:#2a2a2a; padding:20px; border-radius:12px;border:1px solid #fff;">
-        <h4>🌍 Trung bình toàn quốc</h4>
-        <h2 style="color:#ffff00;">{int(gdf['AQI'].mean())}</h2>
+    <div style="flex:1; background:#ffffff; padding:20px; border-radius:12px;border:1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h4 style="color:#333333; margin-top:0;">🌍 Trung bình toàn quốc</h4>
+        <h2 style="color:#cccc16; margin-bottom:0; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">{int(gdf['AQI'].mean())}</h2>
     </div>
-    <div style="flex:1; background:#2a2a2a; padding:20px; border-radius:12px;border:1px solid #fff;">
-        <h4>🏆 Tỉnh tốt nhất</h4>
-        <h2 style="color:#00e400;">{gdf.sort_values('AQI').iloc[0]['NAME_1']}</h2>
+    <div style="flex:1; background:#ffffff; padding:20px; border-radius:12px;border:1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h4 style="color:#333333; margin-top:0;">🏆 Tỉnh tốt nhất</h4>
+        <h2 style="color:#00e400; margin-bottom:0; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">{gdf.sort_values('AQI').iloc[0]['NAME_1']}</h2>
     </div>
-    <div style="flex:1; background:#2a2a2a; padding:20px; border-radius:12px;border:1px solid #fff;">
-        <h4>⚠️ Tỉnh tệ nhất</h4>
-        <h2 style="color:#ff0000;">{gdf.sort_values('AQI', ascending=False).iloc[0]['NAME_1']}</h2>
+    <div style="flex:1; background:#ffffff; padding:20px; border-radius:12px;border:1px solid #dee2e6; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h4 style="color:#333333; margin-top:0;">⚠️ Tỉnh tệ nhất</h4>
+        <h2 style="color:#ff0000; margin-bottom:0; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">{gdf.sort_values('AQI', ascending=False).iloc[0]['NAME_1']}</h2>
     </div>
 </div>
 """, unsafe_allow_html=True)
-
-# st.caption("**Dữ liệu cập nhật tự động lúc 8:00 AM** | Nguồn: AQICN + GADM")

@@ -21,11 +21,18 @@ def calculate_missing_aqi(gdf_with_some_aqi, centroids_path="data/centroids/vn_p
         centroids = centroids.to_crs("EPSG:4326")
 
     # Tạo DataFrame chứa tâm tỉnh có tên
+    # Tạo DataFrame chứa tâm tỉnh có tên
+    # Chuyển sang EPSG:3857 (hệ tọa độ phẳng) để tính tâm, sau đó chuyển lại EPSG:4326
     centroid_points = gpd.GeoDataFrame(
         {"NAME_1": centroids["NAME_1"]},
-        geometry=centroids.geometry.centroid,
+        geometry=centroids.to_crs("EPSG:3857").geometry.centroid.to_crs("EPSG:4326"),
         crs="EPSG:4326"
     )
+    # centroid_points = gpd.GeoDataFrame(
+    #     {"NAME_1": centroids["NAME_1"]},
+    #     geometry=centroids.geometry.centroid,
+    #     crs="EPSG:4326"
+    # )
     centroid_points["lon"] = centroid_points.geometry.x
     centroid_points["lat"] = centroid_points.geometry.y
 

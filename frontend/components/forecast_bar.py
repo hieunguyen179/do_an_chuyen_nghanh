@@ -63,14 +63,14 @@ def create_forecast_bar(province_name, current_aqi=None):
                 margin-top : 20px;
                 width: 100%;
                 height: 450px;
-                background: linear-gradient(135deg, #569156 0%, #000000 100%);
+                background: #ffffff; /* Đổi nền thành trắng */
                 border-radius: 28px;
                 padding: 28px 32px;
                 box-sizing: border-box;
-                color: white;
-                border: 2px solid white;
+                color: #333333; /* Đổi màu chữ thành đen xám để dễ đọc trên nền trắng */
+                border: 1px solid #dee2e6; /* Viền xám nhạt */
                 font-family: 'Segoe UI', Tahoma, sans-serif;
-                box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.05); /* Đổ bóng nhẹ nhàng hơn */
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
@@ -81,13 +81,13 @@ def create_forecast_bar(province_name, current_aqi=None):
                 font-weight: 700;
                 text-align: center;
                 margin: 0 0 8px 0;
-                text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                /* Bỏ text-shadow vì nền trắng không cần */
             }}
 
             .forecast-subtitle {{
                 font-size: 14px;
                 text-align: center;
-                opacity: 0.9;
+                color: #6c757d; /* Xám phụ đề */
                 margin-bottom: 24px;
                 font-weight: 500;
             }}
@@ -103,16 +103,17 @@ def create_forecast_bar(province_name, current_aqi=None):
 
             .forecast-card {{
                 flex: 1;
-                background: white;
+                background: #ffffff;
                 border-radius: 24px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
-                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+                padding: 16px 0;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* Bóng thẻ nhạt hơn */
+                border: 1px solid #f8f9fa; /* Thêm viền cực mỏng cho thẻ */
                 transition: all 0.35s ease;
                 min-width: 0;
-                border: 4px solid transparent;
                 position: relative;
                 overflow: hidden;
             }}
@@ -127,8 +128,9 @@ def create_forecast_bar(province_name, current_aqi=None):
 
             .forecast-card:hover {{
                 transform: translateY(-12px) scale(1.05);
-                box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.15); /* Tăng bóng khi hover */
                 z-index: 10;
+                border-color: #e9ecef;
             }}
 
             .day-label {{
@@ -139,12 +141,12 @@ def create_forecast_bar(province_name, current_aqi=None):
             }}
 
             .icon img {{
-                filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+                filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
             }}
 
             .date {{
                 font-size: 15px;
-                color: #666;
+                color: #888;
                 margin: 8px 0;
                 font-weight: 600;
             }}
@@ -153,7 +155,7 @@ def create_forecast_bar(province_name, current_aqi=None):
                 font-size: 42px;
                 font-weight: 900;
                 margin: 12px 0;
-                text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+                text-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }}
 
             .status {{
@@ -164,13 +166,14 @@ def create_forecast_bar(province_name, current_aqi=None):
                 border-radius: 30px;
                 min-width: 100px;
                 text-align: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             }}
         </style>
     </head>
     <body>
         <div class="forecast-container">
             <div class="forecast-title">
-                Dự báo chất lượng không khí 5 ngày tới · <strong>{province_name}</strong>
+                Dự báo chất lượng không khí 5 ngày tới · <strong style="color: #198754;">{province_name}</strong>
             </div>
             <div class="forecast-subtitle">
                 Dữ liệu dự báo từ WAQI + mô hình nội suy xu hướng
