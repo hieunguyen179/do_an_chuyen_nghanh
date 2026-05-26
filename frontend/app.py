@@ -294,6 +294,7 @@ with col1:
             try:
                 from backend.data_processing import process_data
                 process_data()
+                load_data.clear()
                 st.success("✅ Cập nhật thành công!")
                 st.rerun()
             except Exception as e:
